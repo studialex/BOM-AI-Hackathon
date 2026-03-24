@@ -45,8 +45,8 @@ For full step-by-step instructions, see [Detailed Submission Guide](./docs/submi
 A solution is successful if it clearly demonstrates how reliable cancer information can be made more accessible, better connected, or easier to navigate through an innovative and technically meaningful approach. It should also show the value of AI based techniques, even for people who are not familiar with AI.
 
 <hr>
-<p style="margin-left:auto;margin-right:auto;font-size:180px;width:300px;display-style:block;text-align:center;">🚀</p>
-<p style="margin-top:-80px;font-size:80px;text-decoration:underline;text-align:center;">Let's Go!</p>
+<div style="margin-left:auto;margin-right:auto;font-size:180px;width:300px;display-style:block;text-align:center;">🚀</div>
+<div style="margin-top:-80px;font-size:80px;text-decoration:underline;text-align:center;">Let's Go!</div>
 <hr>
 
 ## FAQ
