@@ -1,6 +1,6 @@
 <img src="https://github.com/IKNL/guidelines/blob/master/resources/logos/iknl_nl.png?raw=true" width=200 align="right">
 
-# BOM-AI-Hackathon
+# BOM-AI-Hackathon<br>TRACK MED TECH
 In Brabant, the future isn’t something we wait for. We build it now. ​​​​​​​​​​​​​​​​​​​[​Join BrabantHack_26 on April 10th 2026 @HTC-Eindhoven](https://www.bomevents.nl/brabanthack26/home)
 
 >[!IMPORTANT]
@@ -30,19 +30,45 @@ For full step-by-step instructions, see [Detailed Submission Guide](./docs/submi
 
 ## Data Sources
 
-| Source | Description | Link |
+| Source | Description | Details |
 |--|--|--|
 |`kanker.nl`|Reliable patient and caregiver information|[More info](./sources/kanker.nl.md)|
-|`iknl.nl`|Oncology expertise, interpretation, and news|[More info](./sources/iknl.nl.md)|
-|`nkr-cijfers.nl`|Statistics and insights from the Netherlands Cancer Registry|[More info](./sources/nkr-cijfers.nl.md)|
+|[`iknl.nl`](https://www.iknl.nl)|Population-based, data-driven and scientific knowledge|[Info](./sources/iknl.nl.md)|
+|[`nkr-cijfers`](https://nkr-cijfers.iknl.nl)|Statistics and insights from the Netherlands Cancer Registry|[Info](./sources/nkr-cijfers.nl.md)|
 |IKNL reports|Extensive analyses and big reports|[More info](./sources/iknl-report.md)|
 |`kankeratlas.iknl.nl`|Regional variation, incidence, and survival|[More info](./sources/kankeratlas.iknl.nl)|
 |`richtlijnendatabase.nl`|Oncology guidelines|[More info](./sources/richtlijnendatabase.nl.md)|
-|Scientific publications IKNL|Publicaties van onze onderzoekers|[List of publications](https://iknl.nl/onderzoek/publicaties)|
+|Scientific publications IKNL|Publicaties van onze onderzoekers (https://iknl.nl/onderzoek/publicaties)|[More info](./sources/publicaties.md)|
 
 
 ## Success Criteria
 A solution is successful if it clearly demonstrates how reliable cancer information can be made more accessible, better connected, or easier to navigate through an innovative and technically meaningful approach. It should also show the value of AI based techniques, even for people who are not familiar with AI.
+
+The following criteria are important to us:
+
+Domain 1: Information integrity / Correctness
+> Item 1: the solution actually provides an answer<br>
+> Item 2: clearly show source provenance and reliability<br>
+> Item 3: only use trusted IKNL sources<br>
+> Item 4: avoid inventing, altering, or distorting medical information<br>
+> Item 5: declines or redirects when it cannot provide an accurate answer<br>
+ 
+Domain 2: Usability
+> Item 1: creates better pathways to the right information for different target groups<br>
+> Item 2: aligns with how people nowadays seek information<br>
+> Item 3: helps users reach relevant information faster or with fewer steps compared to current IKNL websites (e.g., fewer clicks, smarter navigation, improved search, clearer summaries).<br>
+ 
+Domain 3: Ethics:
+> Item 1: declines to answer in case of ethical issues<br>
+ 
+Domain 4: Advanced solution:
+> Item 1: connects our existing sources<br>
+> Item 2: the output creatively improves how users understand information and its context<br>
+> Item 3: demonstrates potential for future implementation or further exploration within IKNL<br>
+ 
+Bonus: 
+> includes a simple mechanism for collecting user feedback on missing or unclear information
+
 
 <hr>
 <div style="margin-left:auto;margin-right:auto;font-size:180px;width:300px;display-style:block;text-align:center;">🚀</div>
