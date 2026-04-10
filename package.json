@@ -9,6 +9,10 @@
     "check": "ultracite check",
     "fix": "ultracite fix",
     "db:migrate": "npx tsx lib/db/migrate.ts",
+    "pipeline:kanker-nl": "npx tsx pipeline/ingest-kanker-nl.ts",
+    "pipeline:nkr-nav": "npx tsx pipeline/ingest-nkr-navigation.ts",
+    "pipeline:cancer-atlas": "npx tsx pipeline/ingest-cancer-atlas.ts",
+    "pipeline:all": "npx tsx pipeline/ingest-kanker-nl.ts && npx tsx pipeline/ingest-nkr-navigation.ts && npx tsx pipeline/ingest-cancer-atlas.ts",
     "test": "export PLAYWRIGHT=True && pnpm exec playwright test"
   },
   "dependencies": {
