@@ -3,6 +3,12 @@ import type { UseChatHelpers } from "@ai-sdk/react";
 import type { Vote } from "@/lib/db/schema";
 import type { ChatMessage } from "@/lib/types";
 import { cn, sanitizeText } from "@/lib/utils";
+import {
+  ActivityIcon,
+  BarChart3Icon,
+  DatabaseIcon,
+  MapPinIcon,
+} from "lucide-react";
 import { MessageContent, MessageResponse } from "../ai-elements/message";
 import { Shimmer } from "../ai-elements/shimmer";
 import {
@@ -298,6 +304,126 @@ const PurePreviewMessage = ({
             )}
           </ToolContent>
         </Tool>
+      );
+    }
+
+    if (type === "tool-getNkrStatistics") {
+      const { toolCallId, state } = part;
+      const widthClass = "w-full";
+
+      return (
+        <div className={widthClass} key={toolCallId}>
+          <Tool className="w-full" defaultOpen={true}>
+            <ToolHeader
+              state={state}
+              title="NKR Cancer Statistics"
+              type="tool-getNkrStatistics"
+            />
+            <ToolContent>
+              {(state === "input-available" ||
+                state === "input-streaming") && (
+                <>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                    <BarChart3Icon className="size-4" />
+                    <span>Querying Netherlands Cancer Registry...</span>
+                  </div>
+                  <ToolInput input={part.input} />
+                </>
+              )}
+              {state === "output-available" && (
+                <>
+                  <div className="flex items-center gap-2 text-sm mb-2">
+                    <DatabaseIcon className="size-4 text-green-600" />
+                    <span className="font-medium">
+                      Source: {String((part.output as unknown as Record<string, unknown>)?.source ?? "nkr-cijfers.iknl.nl")}
+                    </span>
+                    {typeof (part.output as unknown as Record<string, unknown>)?.topic === "string" ? (
+                      <span className="text-muted-foreground">
+                        — {String((part.output as unknown as Record<string, unknown>).topic)}
+                      </span>
+                    ) : null}
+                  </div>
+                  <ToolInput input={part.input} />
+                  <ToolOutput errorText={part.errorText} output={part.output} />
+                </>
+              )}
+              {state === "output-error" && (
+                <ToolOutput errorText={part.errorText} output={part.output} />
+              )}
+            </ToolContent>
+          </Tool>
+        </div>
+      );
+    }
+
+    if (type === "tool-getCancerAtlasData") {
+      const { toolCallId, state } = part;
+      const widthClass = "w-full";
+
+      return (
+        <div className={widthClass} key={toolCallId}>
+          <Tool className="w-full" defaultOpen={true}>
+            <ToolHeader
+              state={state}
+              title="Cancer Atlas — Regional Data"
+              type="tool-getCancerAtlasData"
+            />
+            <ToolContent>
+              {(state === "input-available" ||
+                state === "input-streaming") && (
+                <>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                    <MapPinIcon className="size-4" />
+                    <span>Querying IKNL Cancer Atlas...</span>
+                  </div>
+                  <ToolInput input={part.input} />
+                </>
+              )}
+              {state === "output-available" && (
+                <>
+                  <div className="flex items-center gap-2 text-sm mb-2">
+                    <ActivityIcon className="size-4 text-blue-600" />
+                    <span className="font-medium">
+                      Source: {String((part.output as unknown as Record<string, unknown>)?.source ?? "kankeratlas.iknl.nl")}
+                    </span>
+                    {typeof (part.output as unknown as Record<string, unknown>)?.description === "string" ? (
+                      <span className="text-muted-foreground text-xs ml-1">
+                        — {String((part.output as unknown as Record<string, unknown>).description)}
+                      </span>
+                    ) : null}
+                  </div>
+                  <ToolInput input={part.input} />
+                  <ToolOutput errorText={part.errorText} output={part.output} />
+                </>
+              )}
+              {state === "output-error" && (
+                <ToolOutput errorText={part.errorText} output={part.output} />
+              )}
+            </ToolContent>
+          </Tool>
+        </div>
+      );
+    }
+
+    // Generic fallback for any other tool calls (edit-document, etc.)
+    if (type.startsWith("tool-")) {
+      const toolPart = part as { toolCallId: string; state: string; input?: Record<string, unknown>; output?: Record<string, unknown>; errorText?: string };
+      return (
+        <div className="w-full" key={toolPart.toolCallId}>
+          <Tool className="w-full" defaultOpen={true}>
+            <ToolHeader
+              state={toolPart.state as "input-available"}
+              title={type.replace("tool-", "")}
+              type={type as "tool-getWeather"}
+            />
+            <ToolContent>
+              {toolPart.input != null ? <ToolInput input={toolPart.input} /> : null}
+              {toolPart.output != null ? (
+                <ToolOutput errorText={toolPart.errorText} output={toolPart.output} />
+              ) : null}
+            </ToolContent>
+          </Tool>
+        </div>
       );
     }
 

@@ -8,23 +8,25 @@ const ATLAS_API = "https://iknl-atlas-strapi-prod.azurewebsites.net/api";
 const ATLAS_FILTERS =
   "https://kankeratlas.iknl.nl/locales/nl/filters.json?format=json";
 
-async function fetchFilters() {
-  const res = await fetch(ATLAS_FILTERS);
+async function fetchJsonGet(url: string) {
+  const res = await fetch(url);
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`Cancer Atlas API returned ${res.status}: ${text.slice(0, 200)}`);
+  }
   return res.json();
+}
+
+async function fetchFilters() {
+  return fetchJsonGet(ATLAS_FILTERS);
 }
 
 async function fetchCancerGroups() {
-  const res = await fetch(
-    `${ATLAS_API}/cancer-groups/cancergrppc?locale=nl`
-  );
-  return res.json();
+  return fetchJsonGet(`${ATLAS_API}/cancer-groups/cancergrppc?locale=nl`);
 }
 
 async function fetchPostcodeInfo(digits: number) {
-  const res = await fetch(
-    `${ATLAS_API}/postcodes/getbypc/${digits}`
-  );
-  return res.json();
+  return fetchJsonGet(`${ATLAS_API}/postcodes/getbypc/${digits}`);
 }
 
 async function fetchCancerData(
@@ -32,10 +34,9 @@ async function fetchCancerData(
   sex: number,
   postcode: number
 ) {
-  const res = await fetch(
+  return fetchJsonGet(
     `${ATLAS_API}/cancer-datas/getbygroupsexpostcode/${cancerGroup}/${sex}/${postcode}`
   );
-  return res.json();
 }
 
 export const getCancerAtlasData = tool({

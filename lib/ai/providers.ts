@@ -1,6 +1,6 @@
-import { customProvider, gateway } from "ai";
+import { anthropic } from "@ai-sdk/anthropic";
+import { customProvider } from "ai";
 import { isTestEnvironment } from "../constants";
-import { titleModel } from "./models";
 
 export const myProvider = isTestEnvironment
   ? (() => {
@@ -19,12 +19,14 @@ export function getLanguageModel(modelId: string) {
     return myProvider.languageModel(modelId);
   }
 
-  return gateway.languageModel(modelId);
+  // Use Anthropic directly — modelId is e.g. "claude-sonnet-4-20250514"
+  return anthropic(modelId);
 }
 
 export function getTitleModel() {
   if (isTestEnvironment && myProvider) {
     return myProvider.languageModel("title-model");
   }
-  return gateway.languageModel(titleModel.id);
+  // Use a fast, cheap Anthropic model for title generation
+  return anthropic("claude-sonnet-4-20250514");
 }

@@ -2,6 +2,8 @@ import type { InferUITool, UIMessage } from "ai";
 import { z } from "zod";
 import type { ArtifactKind } from "@/components/chat/artifact";
 import type { createDocument } from "./ai/tools/create-document";
+import type { getCancerAtlasData } from "./ai/tools/get-cancer-atlas";
+import type { getNkrStatistics } from "./ai/tools/get-nkr-statistics";
 import type { getWeather } from "./ai/tools/get-weather";
 import type { requestSuggestions } from "./ai/tools/request-suggestions";
 import type { updateDocument } from "./ai/tools/update-document";
@@ -19,12 +21,16 @@ type updateDocumentTool = InferUITool<ReturnType<typeof updateDocument>>;
 type requestSuggestionsTool = InferUITool<
   ReturnType<typeof requestSuggestions>
 >;
+type nkrStatisticsTool = InferUITool<typeof getNkrStatistics>;
+type cancerAtlasTool = InferUITool<typeof getCancerAtlasData>;
 
 export type ChatTools = {
   getWeather: weatherTool;
   createDocument: createDocumentTool;
   updateDocument: updateDocumentTool;
   requestSuggestions: requestSuggestionsTool;
+  getNkrStatistics: nkrStatisticsTool;
+  getCancerAtlasData: cancerAtlasTool;
 };
 
 export type CustomUIDataTypes = {

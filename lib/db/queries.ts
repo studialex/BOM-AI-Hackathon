@@ -1,5 +1,6 @@
 import "server-only";
 
+import neo4j from "neo4j-driver";
 import type { ArtifactKind } from "@/components/chat/artifact";
 import type { VisibilityType } from "@/components/chat/visibility-selector";
 import { ChatbotError } from "../errors";
@@ -249,7 +250,7 @@ export async function getChatsByUserId({
   const driver = getDriver();
   const session = driver.session();
   try {
-    const extendedLimit = limit + 1;
+    const extendedLimit = neo4j.int(limit + 1);
     let cypher: string;
     let params: Record<string, unknown> = { userId: id, limit: extendedLimit };
 
