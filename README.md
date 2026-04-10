@@ -1,119 +1,71 @@
-<img src="https://github.com/IKNL/guidelines/blob/master/resources/logos/iknl_nl.png?raw=true" width=200 align="right">
+<a href="https://chatbot.ai-sdk.dev/demo">
+  <img alt="Chatbot" src="app/(chat)/opengraph-image.png">
+  <h1 align="center">Chatbot</h1>
+</a>
 
-# BOM-AI-Hackathon<br>TRACK: MED TECH
-In Brabant, the future isn’t something we wait for. We build it now. <br>​​​​​​​​​​​​​​​​​​​[​Join BrabantHack_26 on April 10th 2026 @HTC-Eindhoven](https://www.bomevents.nl/brabanthack26/home)
+<p align="center">
+    Chatbot (formerly AI Chatbot) is a free, open-source template built with Next.js and the AI SDK that helps you quickly build powerful chatbot applications.
+</p>
 
->[!IMPORTANT]
-> A solution to inform people faster, better, and more reliably by connecting our distributed, trusted sources in a smarter, more accessible, and future proof way.
+<p align="center">
+  <a href="https://chatbot.ai-sdk.dev/docs"><strong>Read Docs</strong></a> ·
+  <a href="#features"><strong>Features</strong></a> ·
+  <a href="#model-providers"><strong>Model Providers</strong></a> ·
+  <a href="#deploy-your-own"><strong>Deploy Your Own</strong></a> ·
+  <a href="#running-locally"><strong>Running locally</strong></a>
+</p>
+<br/>
 
-**Contents**
-* [Introduction](#introduction)
-* [Submit Your Idea](#submit-your-idea)
-* [Data Sources](#data-sources)
-* [Success Criteria](#success-criteria)
-* [FAQ](#faq)
+## Features
 
-## Introduction
-### AI for smarter acces to cancer information
-People increasingly turn to general AI systems for cancer information because they are quick and easy to use, but the results are not always reliable. At the same time, trusted cancer knowledge is spread across different platforms, which makes it harder for patients, professionals, and policymakers to find accurate and consistent information when they need it.
- 
-### Challenge
-In this track, you’ll explore how AI can connect and unlock trusted knowledge sources: How can we make reliable cancer information faster and smarter to access by using AI to connect different sources of knowledge?
+- [Next.js](https://nextjs.org) App Router
+  - Advanced routing for seamless navigation and performance
+  - React Server Components (RSCs) and Server Actions for server-side rendering and increased performance
+- [AI SDK](https://ai-sdk.dev/docs/introduction)
+  - Unified API for generating text, structured objects, and tool calls with LLMs
+  - Hooks for building dynamic chat and generative user interfaces
+  - Supports OpenAI, Anthropic, Google, xAI, and other model providers via AI Gateway
+- [shadcn/ui](https://ui.shadcn.com)
+  - Styling with [Tailwind CSS](https://tailwindcss.com)
+  - Component primitives from [Radix UI](https://radix-ui.com) for accessibility and flexibility
+- Data Persistence
+  - [Neon Serverless Postgres](https://vercel.com/marketplace/neon) for saving chat history and user data
+  - [Vercel Blob](https://vercel.com/storage/blob) for efficient file storage
+- [Auth.js](https://authjs.dev)
+  - Simple and secure authentication
 
-## Submit Your Idea
-1. Fork this repository on GitHub.
-2. Create your team folder in `teams/<your_team>/`.
-3. Add your submission files (at least one `README.md`).
-4. Open a Pull Request from your fork to this repository.
+## Model Providers
 
-For full step-by-step instructions, see [Detailed Submission Guide](./teams/README.md#detailed-submission-guide).
+This template uses the [Vercel AI Gateway](https://vercel.com/docs/ai-gateway) to access multiple AI models through a unified interface. Models are configured in `lib/ai/models.ts` with per-model provider routing. Included models: Mistral, Moonshot, DeepSeek, OpenAI, and xAI.
 
-## Data Sources
+### AI Gateway Authentication
 
-| Source | Description | Details |
-|--|--|--|
-|[`kanker.nl`](https://www.kanker.nl/)|Reliable patient and caregiver information|[Info](./sources/kanker.nl.md)|
-|[`iknl.nl`](https://www.iknl.nl)|Population-based, data-driven and scientific knowledge|[Info](./sources/iknl.nl.md)|
-|[`nkr-cijfers`](https://nkr-cijfers.iknl.nl)|Statistics and insights from the Netherlands Cancer Registry|[Info](./sources/nkr-cijfers.nl.md)|
-|[`cancer atlas`](https://kankeratlas.iknl.nl/)|Interactive map with regional incidence variation|[Info](./sources/kankeratlas.iknl.nl.md)|
-|[`richtlijnendatabase`](https://richtlijnendatabase.nl/)|Oncology guideline database|[Info](./sources/richtlijnendatabase.nl.md)|
-|[`IKNL reports`](https://iknl.nl/onderzoek/publicaties)|Extensive analyses and big reports|[Info](./sources/publicaties.md)|
-|[`scientific publications`](https://iknl.nl/onderzoek/publicaties)|Scientific articles and insight by IKNL researchers|[Info](./sources/publicaties.md)|
+**For Vercel deployments**: Authentication is handled automatically via OIDC tokens.
 
+**For non-Vercel deployments**: You need to provide an AI Gateway API key by setting the `AI_GATEWAY_API_KEY` environment variable in your `.env.local` file.
 
-## Success Criteria
-A solution is successful if it clearly demonstrates how reliable cancer information can be made more accessible, better connected, or easier to navigate through an innovative and technically meaningful approach. It should also show the value of AI based techniques, even for people who are not familiar with AI.
+With the [AI SDK](https://ai-sdk.dev/docs/introduction), you can also switch to direct LLM providers like [OpenAI](https://openai.com), [Anthropic](https://anthropic.com), [Cohere](https://cohere.com/), and [many more](https://ai-sdk.dev/providers/ai-sdk-providers) with just a few lines of code.
 
-The following criteria are important to us:
+## Deploy Your Own
 
-Domain 1: Information integrity / Correctness
-> Item 1: the solution actually provides an answer<br>
-> Item 2: clearly show source provenance and reliability<br>
-> Item 3: only use trusted IKNL sources<br>
-> Item 4: avoid inventing, altering, or distorting medical information<br>
-> Item 5: declines or redirects when it cannot provide an accurate answer<br>
- 
-Domain 2: Usability
-> Item 1: creates better pathways to the right information for different target groups<br>
-> Item 2: aligns with how people nowadays seek information<br>
-> Item 3: helps users reach relevant information faster or with fewer steps compared to current IKNL websites (e.g., fewer clicks, smarter navigation, improved search, clearer summaries).<br>
- 
-Domain 3: Ethics:
-> Item 1: declines to answer in case of ethical issues<br>
- 
-Domain 4: Advanced solution:
-> Item 1: connects our existing sources<br>
-> Item 2: the output creatively improves how users understand information and its context<br>
-> Item 3: demonstrates potential for future implementation or further exploration within IKNL<br>
- 
-Bonus: 
-> includes a simple mechanism for collecting user feedback on missing or unclear information
+You can deploy your own version of Chatbot to Vercel with one click:
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/templates/next.js/chatbot)
 
-<hr>
-<div style="margin-left:auto;margin-right:auto;font-size:180px;width:300px;display-style:block;text-align:center;">🚀</div>
-<div style="margin-top:-80px;font-size:80px;text-decoration:underline;text-align:center;">Let's Go!</div>
-<hr>
+## Running locally
 
-## FAQ
+You will need to use the environment variables [defined in `.env.example`](.env.example) to run Chatbot. It's recommended you use [Vercel Environment Variables](https://vercel.com/docs/projects/environment-variables) for this, but a `.env` file is all that is necessary.
 
-<details>
-<summary>Do we have to build a chatbot?</summary>
-Not per se, we encourage you to be creative!
-</details>
+> Note: You should not commit your `.env` file or it will expose secrets that will allow others to control access to your various AI and authentication provider accounts.
 
-<details>
-<summary>Do I need to use all data sources?</summary>
-No. Choose the ones that support your idea best. Creativity in using (or combining) sources is encouraged!
-</details>
+1. Install Vercel CLI: `npm i -g vercel`
+2. Link local instance with Vercel and GitHub accounts (creates `.vercel` directory): `vercel link`
+3. Download your environment variables: `vercel env pull`
 
-<details>
-<summary>What is the target audience?</summary>
-IKNL serves a wide range of target groups with very different needs: political and regulatory stakeholders (VWS, RIVM, ZiNL), the general public, patients and their loved ones, healthcare professionals, and partner/umbrella organizations such as hospitals and insurers. A solution that works well for patients may not fit the needs of policymakers or professionals, and vice versa. Teams may decide for which target group they design, or how one concept could support multiple groups.
-</details>
+```bash
+pnpm install
+pnpm db:migrate # Setup database or apply latest database changes
+pnpm dev
+```
 
-<details>
-<summary>What counts as an eligible submission?</summary>
-Any idea or prototype that aims to make cancer information more accessible, better connected, or easier to navigate using AI and the provided data sources.
-</details>
-
-<details>
-<summary>How do I submit my idea?</summary>
-Fork this repository, add your team folder under `teams/<your_team>/`, and submit your files via a Pull Request. See the [Detailed Submission Guide](./docs/submission-guide.md) for step-by-step instructions.
-</details>
-
-
-<details>
-<summary>Who do I contact for help?</summary>
-For questions or support, create an Issue in this repository or get in touch with the organizers during the event.
-</details>
-
-<details>
-<summary>What happens to my submission after the hackathon?</summary>
-Every submission is carefully reviewed by the IKNL Data Science team - your idea may be selected for a follow-up project and make real impact for cancer care.
-</details>
-
-
-
-
-
+Your app template should now be running on [localhost:3000](http://localhost:3000).
